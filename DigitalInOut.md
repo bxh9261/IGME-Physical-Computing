@@ -6,7 +6,7 @@ Stoplight is an experiment with digital in/outs where the speed at which the red
 <br>
 
 ## Original idea
-My original plan for this setup was to make a sort of game where the user had to press the brake when the red light was on, and the gas when the green light wason. I had pre-programmed timers with the random() function for the stoplight, but where this idea failed was that I was unable to figure out a way to have multiple threads in the arduino. I couldn't similtaneously run the stoplight timers with the delay() function and check for input from the buttons. I'd be interested to hear if there's a way to do this.
+My original plan for this setup was to make a sort of game where the user had to press the brake when the red light was on, and the gas when the green light was on. I had pre-programmed timers with the random() function for the stoplight, but where this idea failed was that I was unable to figure out a way to have multiple threads in the arduino. I couldn't similtaneously run the stoplight timers with the delay() function and check for input from the buttons. I'd be interested to hear if there's a way to do this.
 <br>
 
 ## Final Product
