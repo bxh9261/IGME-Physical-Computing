@@ -10,7 +10,7 @@ My original plan for this setup was to make a sort of game where the user had to
 <br>
 
 ## Final Product
-![](https://im.ezgif.com/tmp/ezgif-1-f40f6149ef0f.gif)
+![](https://i.imgur.com/slEFxaa.mp4)
 
 My final design was a small light show with the 3 LEDs that can be controlled by the "gas" and "brake" buttons. With this, I was able to keep the same setup as my original idea and just change the code. Holding the brake button will slow down the time each light flashes; it is capped at 1.5 seconds. The gas button will slowly speed it up, with a minimum flash time of 0.1 seconds. 
 <br>
