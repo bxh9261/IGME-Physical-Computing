@@ -1,20 +1,82 @@
 # Stoplight - Digital In/Outs
 
-![](https://imgur.com/NMcinhE)
+![](https://i.imgur.com/s2MnQ1F.jpg)
 
-Text Rain is an interactive visual experience where the participant controls falling letters which are projected on a wall. They can do so with any part of their body or any object, as the silhouette of anything in front of the wall is projected on the screen. The user can attempt to catch letters at random, or spell out specific words, as the letters fall in the order of a poem ("Talk, You" by Evan Zimroth).
+Stoplight is an experiment with digital in/outs where the speed at which the red, yellow, and green lights flash is controlled by the "gas" (white button) and "brake" (yellow button).
 <br>
 
-## Whodunnit, and how did they build it?
-Text Rain was built by Romy Achituv & Camille Utterback. It was built in 1999, as part of a collaborative art workshop in New York City called AbacusParts. Achituv was one of the founders of the workshop, and helped guide Utterback, who came up with the idea for the piece. Utterback does not dive into the technical side of her art on her blog, but thanks to Marlena Abraham for Carnegie Mellon University, we can get a good idea of how it may work. She created a replica of Text Rain which uses an object-oriented approach. A string containing the poem is passed in, and each letter is turned into a Letter object. Each Letter object is programmed to fall down the screen, and checks the darkness of the pixels below it. If the darkness reaches a certain threshold, the letter will be pushed up. 
+## Original idea
+My original plan for this setup was to make a sort of game where the user had to press the brake when the red light was on, and the gas when the green light wason. I had pre-programmed timers with the random() function for the stoplight, but where this idea failed was that I was unable to figure out a way to have multiple threads in the arduino. I couldn't similtaneously run the stoplight timers with the delay() function and check for input from the buttons. I'd be interested to hear if there's a way to do this.
 <br>
 
-## What context is it aimed at?
-Text Rain is intended to be an art exhibit displaying the interaction between humans and poetry. It is an art peice that can peak the interest of anyone in any demographic. It is currently exhibited at the Simthsonian Exhibit in Washington, DC, as well as museums in São Paulo, Barcelona, Pittsburgh, and Louisville. 
+## Final Product
+![](https://im.ezgif.com/tmp/ezgif-1-f40f6149ef0f.gif)
+
+My final design was a small light show with the 3 LEDs that can be controlled by the "gas" and "brake" buttons. With this, I was able to keep the same setup as my original idea and just change the code. Holding the brake button will slow down the time each light flashes; it is capped at 1.5 seconds. The gas button will slowly speed it up, with a minimum flash time of 0.1 seconds. 
 <br>
 
-## What kind of experience is created?
-Camille discusses in her blog how she is amazed at the different experiences that can be created. Some people move sporadically, scattering text as it falls down the screen. Others stand perfectly still, allowing the text to accumulate on their body. In groups, some people will link arms to try to catch as much text as possible. Others will focus on the poem aspect, collaborating to spell out the words of the poem. On the flip side, some group members will even attempt to disrupt the creation of the poem. Ultimately, all participants will experience interaction with the poem, but the specifics of the interaction are up to the user.
-<br>
+~~~
+// constants won't change. They're used here to set pin numbers:
+const int brake = 2;     // the number of the pushbutton pin
+const int gas = 12;
+const int ledPinG = 5;      // the number of the LED pin
+const int ledPinY = 7;
+const int ledPinR = 9;
 
-[Additional Reference - Marlena Abraham](http://golancourses.net/2013/projects/text-rain-processing-implementation/)
+
+// variables will change:
+int brakeState = 0;
+int gasState = 0;
+int lightSpeed = 500; 
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPinG, OUTPUT);
+  pinMode(ledPinY, OUTPUT);
+  pinMode(ledPinR, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(brake, INPUT);
+  pinMode(gas, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  brakeState = digitalRead(brake);
+  gasState = digitalRead(gas);
+  
+  //speed UP, min 0.1 seconds
+  if(gasState == HIGH){
+    lightSpeed-=200;
+    if(lightSpeed < 100){
+      lightSpeed = 100;
+    }
+  }
+  //slow down, max 1.5 seconds
+  if(brakeState == HIGH){
+    lightSpeed+=200;
+    if(lightSpeed > 1500){
+      lightSpeed = 1500;
+    }
+  }
+  
+  stoplight(lightSpeed,lightSpeed,lightSpeed);
+  
+}
+
+//loop lights
+void stoplight(int G, int Y, int R){
+      digitalWrite(ledPinR, LOW);
+      digitalWrite(ledPinY, LOW);
+      digitalWrite(ledPinG, HIGH);   // turn the LED on (HIGH is the voltage level)
+      delay(G); 
+      digitalWrite(ledPinG, LOW);
+      digitalWrite(ledPinY, HIGH);    // turn the LED off by making the voltage LOW
+      delay(Y);
+      digitalWrite(ledPinY, LOW);
+      digitalWrite(ledPinR, HIGH);
+      delay(R);
+}
+~~~
+
+## Future Iterations
+I may play around with this more and try to figure out how to make the stoplight game work. If that doesn't work, I could also mess around with longer light strings or perhaps switches to reverse the direction of the light loop. 
