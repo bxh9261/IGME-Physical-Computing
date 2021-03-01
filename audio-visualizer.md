@@ -18,6 +18,8 @@ I had to figure out how to use the sound sensor with an analog input, as well as
 
 ![Photo of Breadboard with 7 LEDs](https://i.imgur.com/siibtYA.jpg)
 
+[![Audio Visualizer](http://img.youtube.com/vi/JWDMJos1Jw0/0.jpg)](http://www.youtube.com/watch?v=JWDMJos1Jw0 "Audio Visualizer")
+
 # Fritzing
 
 ![Fritzing Diagram](https://i.imgur.com/j9OGAi5.jpg)
