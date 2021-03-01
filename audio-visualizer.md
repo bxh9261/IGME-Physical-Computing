@@ -1,6 +1,7 @@
 
 
-`//Audio Visualizer - Brad Hanel
+`
+//Audio Visualizer - Brad Hanel
 
 // constants won't change. Used here to set a pin number:
 const int ledPins[7] = {4,5,6,7,8,9,10};
@@ -109,4 +110,5 @@ void loop() {
     }
   }
   
-}`
+}
+`
