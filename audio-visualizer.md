@@ -1,3 +1,29 @@
+# Audio Visualizer
+
+# Goal
+
+Create some cool ways to visualize audio using only LEDs as output.
+
+# Description
+
+The audio visualizer uses 7 LEDs that are controlled in 2 different modes. The first mode measures the audio input level, and lights up a number of LEDs based on the volume of the audio, making a sound wave of sorts with the LEDs. Mode 2 has the LEDs light up one after the other, with the interval between each getting faster as the volume increases.
+
+# Process
+
+The project was insprired by my love for music, I wanted to create something using audio to create a cool effect. 
+
+I had to figure out how to use the sound sensor with an analog input, as well as how to use the serial port. I tested the microphone first by using the serial port, and used the numbers on the port to choose my values for both visualization modes. Upon initial testing, the sound wave was incredibly jumpy, so I did some math to average the last 100 inputs together, creating a smoother look to the visualizer. I found the values ranged from about 0-175 so with 7 LEDS I set the interval to 25 units. Mode 2 was inspired by my stoplight project, incorporating the blink-without-delay to do something I wasn't able to figure out for my first assignment (since I didn't know how to check inputs similtaneously while using delay()).
+
+# Photo and Demo Video
+
+![Photo of Breadboard with 7 LEDs](https://i.imgur.com/siibtYA.jpg)
+
+# Fritzing
+
+![Fritzing Diagram](https://i.imgur.com/j9OGAi5.jpg)
+
+# Code
+
      //Audio Visualizer - Brad Hanel
 
      // constants won't change. Used here to set a pin number:
@@ -108,3 +134,7 @@
        }
   
      }`
+     
+# Citations
+     
+[Sound sensor tutorial](https://randomnerdtutorials.com/guide-for-microphone-sound-sensor-with-arduino/)
